@@ -7,16 +7,12 @@ public class Main {
         library.addBook(new Book("Struktur Data", "Budi"));
         library.addBook(new Book("Algoritma", "Citra"));
 
-        library.displayBooks();
+        library.displayAvailableBooks();
 
-        Book result = library.searchBook("Struktur Data");
-        if (result != null) {
-            System.out.println("Buku ditemukan: " + result.getTitle());
-        } else {
-            System.out.println("Buku tidak ditemukan.");
-        }
+        library.borrowBook("Struktur Data");
+        library.displayAvailableBooks();
 
-        library.removeBook("Pemrograman Java");
-        library.displayBooks();
+        library.returnBook("Struktur Data");
+        library.displayAvailableBooks();
     }
 }

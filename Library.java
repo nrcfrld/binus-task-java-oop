@@ -59,4 +59,47 @@ class Library {
                 (books[i].isAvailable() ? " (Tersedia)" : " (Dipinjam)"));
         }
     }
+
+      // Menampilkan hanya buku yang tersedia
+    public void displayAvailableBooks() {
+        boolean adaBuku = false;
+        for (int i = 0; i < count; i++) {
+            if (books[i].isAvailable()) {
+                if (!adaBuku) {
+                    System.out.println("Buku yang tersedia:");
+                    adaBuku = true;
+                }
+                System.out.println("- " + books[i].getTitle() + " oleh " + books[i].getAuthor());
+            }
+        }
+        if (!adaBuku) {
+            System.out.println("Tidak ada buku yang tersedia saat ini.");
+        }
+    }
+
+    // Meminjam buku
+    public void borrowBook(String title) {
+        Book book = searchBook(title);
+        if (book != null && book.isAvailable()) {
+            book.setAvailable(false);
+            System.out.println("Buku \"" + title + "\" berhasil dipinjam.");
+        } else if (book != null) {
+            System.out.println("Buku \"" + title + "\" sedang dipinjam.");
+        } else {
+            System.out.println("Buku \"" + title + "\" tidak ditemukan.");
+        }
+    }
+
+    // Mengembalikan buku
+    public void returnBook(String title) {
+        Book book = searchBook(title);
+        if (book != null && !book.isAvailable()) {
+            book.setAvailable(true);
+            System.out.println("Buku \"" + title + "\" berhasil dikembalikan.");
+        } else if (book != null) {
+            System.out.println("Buku \"" + title + "\" sudah tersedia.");
+        } else {
+            System.out.println("Buku \"" + title + "\" tidak ditemukan.");
+        }
+    }
 }
